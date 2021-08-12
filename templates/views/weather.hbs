@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>headerlinks}}
+</head>
+<body>
+    {{>navbar}}
+
+    <div class="main-container">
+        
+            <form class="form-container">
+                <input id="cityname" type="text" placeholder="Search Here" value="">
+                <input id="submitbtn" type="submit"  value="Search" >
+            </form>
+        
+        <div class="box">
+            <div class="first-layer">
+                <p id="setday">Monday</p>
+                <p id="settime">5:30 PM</p>
+            </div>
+
+            <div class="middle-layer">
+                <i class="fas fa-street-view"></i><p id = "cityData">Get Output here  <p id="countryData"></p>
+            </div>
+
+            <div class="last-layer">
+                <h1 id="temp">__</h1><h1><sup>o</sup> C</h1>
+               <span id="tempstatus">__</span>
+            </div>
+        </div>
+    </div>
+
+    {{>footer}}
+
+    <script src="js/main.js"></script>
+
+    <script>
+// time and days dispaly
+
+const setday = document.getElementById('setday');
+const settime = document.getElementById('settime');
+
+const dateNow = new Date();
+const day = dateNow.getDay();
+const Days = [ 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+let currentDay = Days[day];
+const hours= dateNow.getHours();
+const minutes = dateNow.getMinutes();
+let HH;
+let MM;
+let meridian;
+if (hours>12){
+    HH = `${hours-12}`;
+    meridian = "PM"
+    if (minutes<10){
+        MM = `0${minutes}`
+    }
+    else{
+        MM=`${minutes}`;
+    }
+}
+else{
+    HH=`${hours}`;
+    meridian="AM"
+}
+
+const currentTime = `${HH}:${MM} ${meridian}`;
+console.log(currentTime)
+setday.innerText= currentDay;
+settime.innerText = currentTime;
+
+
+
+    </script>
+
+</body>
+</html>
